@@ -1,0 +1,14 @@
+{
+    "name": "os-cillation/os-erp-frontend",
+    "description": "Frontend for the os-erp core package",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nils Baltuttis",
+            "email": "nb@os-cillation.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
