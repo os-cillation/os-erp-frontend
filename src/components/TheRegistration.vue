@@ -65,7 +65,7 @@ import {
 } from "vuelidate/lib/validators";
 const passwordRegex = helpers.regex(
   "password",
-  /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[\,\.\-\_\#\'\+\*\~]).{8,}$/
+  /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[,.\-_#'+*~]).{8,}$/
 );
 
 let maxUsername = 15;
