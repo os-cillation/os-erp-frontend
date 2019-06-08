@@ -37,8 +37,8 @@ export default {
     };
   },
   methods: {
-    onSuccess: function(user) {
-      this.success = user;
+    onSuccess: function() {
+      window.location.assign("/login");
     },
     onError: function(error) {
       this.error = error;
