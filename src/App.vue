@@ -12,7 +12,9 @@
       <v-spacer></v-spacer>
       <router-link to="/">Home</router-link>
       |
-      <router-link to="/login">Foo</router-link>
+      <router-link to="/login">Anmelden</router-link>
+      |
+      <router-link to="/register">Registrieren</router-link>
       |
       <router-link to="/about">About</router-link>
       <v-btn icon>
