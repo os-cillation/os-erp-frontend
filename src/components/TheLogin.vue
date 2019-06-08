@@ -28,7 +28,7 @@ export default {
       const promise = user.login(this.username, this.password);
 
       promise
-        .then(user => this.$emit("success", user))
+        .then(token => this.$emit("success", token))
         .catch(error => this.$emit("error", error));
     }
   },

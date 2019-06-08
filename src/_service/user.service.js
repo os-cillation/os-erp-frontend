@@ -4,14 +4,15 @@ export default {
   login,
   register,
   logout,
-  getUser
+  getUser,
+  getToken
 };
 
 function login(username, password) {
   return axios
     .post("oauth/token", { name: username, password: password })
     .then(handleResponse, handleError)
-    .then(user => setUser(user));
+    .then(token => setToken(token));
 }
 
 function register(username, email, password, passwordRepeated) {
@@ -26,10 +27,22 @@ function register(username, email, password, passwordRepeated) {
     .then(user => setUser(user));
 }
 
-function setUser(user) {
-  if (user.token) {
-    localStorage.setItem("user", JSON.stringify(user));
+function setToken(token) {
+  localStorage.setItem("token", JSON.stringify(token));
+
+  return Promise.resolve(token);
+}
+
+function getToken() {
+  if (!localStorage.getItem("token")) {
+    return null;
   }
+
+  return JSON.parse(localStorage.getItem("token"));
+}
+
+function setUser(user) {
+  localStorage.setItem("user", JSON.stringify(user));
 
   return Promise.resolve(user);
 }
@@ -39,11 +52,5 @@ function getUser() {
     return null;
   }
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (user.token) {
-    return user;
-  }
-
-  return null;
+  return JSON.parse(localStorage.getItem("user"));
 }
