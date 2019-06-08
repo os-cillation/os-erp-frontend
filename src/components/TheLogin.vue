@@ -15,22 +15,27 @@
         box
       ></v-text-field>
 
-      <v-btn type="submit" color="primary">Login</v-btn>
+      <v-btn type="submit" color="primary">Anmelden</v-btn>
     </v-form>
   </div>
 </template>
 
 <script>
+import user from "../_service/user.service";
 export default {
   methods: {
     onSubmit: function() {
-      alert(this.username + this.password);
+      const promise = user.login(this.username, this.password);
+
+      promise
+        .then(token => this.$emit("success", token))
+        .catch(error => this.$emit("error", error));
     }
   },
   data: function() {
     return {
-      username: "Test",
-      password: "test1234"
+      username: "",
+      password: ""
     };
   }
 };

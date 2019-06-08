@@ -12,7 +12,9 @@
       <v-spacer></v-spacer>
       <router-link to="/">Home</router-link>
       |
-      <router-link to="/login">Foo</router-link>
+      <router-link to="/login">Anmelden</router-link>
+      |
+      <router-link to="/register">Registrieren</router-link>
       |
       <router-link to="/about">About</router-link>
       <v-btn icon>
@@ -27,11 +29,11 @@
 </template>
 
 <script>
-  export  default {
-    data: function() {
-      return {
-        api: process.env.VUE_APP_API_CLIENT
-      }
-    }
+export default {
+  data: function() {
+    return {
+      api: process.env.VUE_APP_API_CLIENT
+    };
   }
+};
 </script>
