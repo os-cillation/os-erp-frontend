@@ -27,11 +27,11 @@
 </template>
 
 <script>
-  export  default {
-    data: function() {
-      return {
-        api: process.env.VUE_APP_API_CLIENT
-      }
-    }
+export default {
+  data: function() {
+    return {
+      api: process.env.VUE_APP_API_CLIENT
+    };
   }
+};
 </script>
