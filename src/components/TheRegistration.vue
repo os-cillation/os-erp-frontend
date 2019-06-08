@@ -56,7 +56,6 @@
 
 <script>
 import user from "../_service/user.service";
-import { validationMixin } from "vuelidate";
 import {
   required,
   maxLength,
@@ -72,7 +71,6 @@ const passwordRegex = helpers.regex(
 let maxUsername = 15;
 
 export default {
-  mixins: [validationMixin],
   data: function() {
     return {
       valid: false,
