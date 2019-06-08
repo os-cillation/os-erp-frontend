@@ -1,7 +1,7 @@
 import lib from "axios";
 
 const axios = lib.create({
-  baseURL: "/api/",
+  baseURL: "/",
   headers: {
     Accept: "application/json"
   }

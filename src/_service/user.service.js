@@ -8,27 +8,20 @@ export default {
 };
 
 function login(username, password) {
-  const formData = new FormData();
-
-  formData.append("name", username);
-  formData.append("password", password);
-
   return axios
-    .post("auth/signin", formData)
-    .then(handleResponse)
+    .post("oauth/token", { name: username, password: password })
+    .then(handleResponse, handleError)
     .then(user => setUser(user));
 }
 
 function register(username, email, password, passwordRepeated) {
-  const formData = new FormData();
-
-  formData.append("name", username);
-  formData.append("email", email);
-  formData.append("password", password);
-  formData.append("password_confirmation", passwordRepeated);
-
   return axios
-    .post("auth/signup", formData)
+    .post("auth/register", {
+      name: username,
+      email: email,
+      password: password,
+      password_confirmation: passwordRepeated
+    })
     .then(handleResponse, handleError)
     .then(user => setUser(user));
 }
