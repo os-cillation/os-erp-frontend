@@ -1,11 +1,15 @@
 import lib from "axios";
+import config from "../config";
 
 const axios = lib.create({
-  baseURL: "/",
+  baseURL: config.apiUrl,
   headers: {
     Accept: "application/json"
   }
 });
+
+axios.defaults.data.client_id = config.apiClientId;
+axios.defaults.data.client_secret = config.apiClientSecret;
 
 function handleError(error) {
   return handleResponse(error.response);
