@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import user from "../_service/user.service";
 import { validationMixin } from "vuelidate";
 import {
   required,
@@ -93,9 +94,18 @@ export default {
       this.$v.$touch();
 
       if (!this.$v.$invalid) {
-        alert("valid");
+        const promise = user.register(
+          this.username,
+          this.email,
+          this.password,
+          this.passwordRepeat
+        );
+
+        promise
+          .then(user => this.$emit("success", user))
+          .catch(error => this.$emit("error", error));
       } else {
-        alert("NOT!");
+        this.$emit("invalid");
       }
     }
   },
@@ -105,14 +115,14 @@ export default {
       if (!this.$v.username.$dirty) return errors;
       !this.$v.username.required && errors.push("Der Benutzername ist Pflicht");
       !this.$v.username.maxLength &&
-        errors.push(`Der Benutzername ist zu lang`);
+        errors.push("Der Benutzername ist zu lang");
       return errors;
     },
     emailErrors: function() {
       const errors = [];
       if (!this.$v.email.$dirty) return errors;
       !this.$v.email.required && errors.push("Die E-Mail Adresse ist Pflicht");
-      !this.$v.email.email && errors.push(`Das ist keine gültige E-Mail`);
+      !this.$v.email.email && errors.push("Das ist keine gültige E-Mail");
       return errors;
     },
     passwordErrors: function() {
@@ -132,7 +142,7 @@ export default {
       !this.$v.passwordRepeat.required &&
         errors.push("Bitte wiederholen Sie Ihr Passwort");
       !this.$v.passwordRepeat.sameAsPassword &&
-        errors.push(`Das Passwort stimmt nicht überein`);
+        errors.push("Das Passwort stimmt nicht überein");
       return errors;
     }
   }
